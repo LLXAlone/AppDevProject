@@ -1,3 +1,3 @@
 # AppDev CRUD and User Authentication
 
-This repository contains the activity.
+This repository shows a basic website for recording Honkai Star Rail players that have the new character, Sparkle.
