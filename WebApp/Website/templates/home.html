@@ -1,64 +1,73 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- <div class="col-md-6 offset-sm-3"> -->
-    <div>
+<div class="container">
     {% if user.is_authenticated %}
-        <h1>👋 Hello!</h1>
-        <br>
-        <h2>ConnectWise Records</h2>
-        <table class="table table-striped table-hover table-bordered">
-            <thead class="table-dark">
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Address</th>
-                <th scope="col">City</th>
-                <th scope="col">State</th>
-                <th scope="col">Zipcode</th>
-                <th scope="col">Created At</th>
-              </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    {% if records %}
-                    {% for record in records %}
-                        <td><a href="{% url 'record' record.id %}">{{ record.id }}</td>
-                        <td>{{ record.first_name }}</td>
-                        <td>{{ record.last_name }}</td>
-                        <td>{{ record.email }}</td>
-                        <td>{{ record.phone }}</td>
-                        <td>{{ record.address }}</td>
-                        <td>{{ record.city }}</td>
-                        <td>{{ record.state }}</td>
-                        <td>{{ record.zipcode }}</td>
-                        <td>{{ record.created_at }}</td>
-                        <br>
-                </tr>
-                {% endfor %}
-                {% endif %}
-            </tbody>
-          </table>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center mt-5 mb-4 text-white">👋 Welcome Sparkle Mains!</h1>
+            <p class="text-center mb-4 text-white">This website is used to celebrate and record those who got the new character in Honkai Star Rail, Sparkle!!!</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="mb-4 text-white">All Sparkle Havers</h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">City</th>
+                            <th scope="col">State</th>
+                            <th scope="col">Zipcode</th>
+                            <th scope="col">Created At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in records %}
+                        <tr>
+                            <td><a href="{% url 'record' record.id %}">{{ record.id }}</a></td>
+                            <td>{{ record.first_name }}</td>
+                            <td>{{ record.last_name }}</td>
+                            <td>{{ record.email }}</td>
+                            <td>{{ record.phone }}</td>
+                            <td>{{ record.address }}</td>
+                            <td>{{ record.city }}</td>
+                            <td>{{ record.state }}</td>
+                            <td>{{ record.zipcode }}</td>
+                            <td>{{ record.created_at }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     {% else %}
-    <h1>Login</h1>
-    <form action="{% url 'home' %}" method="post">
-        {% csrf_token %}
-        <form>
-            <div class="mb-3">
-                <!-- <label for="first_name">Name</label> -->
-              <input type="text" class="form-control" name="username", placeholder="Username" required>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center mb-4">Login</h1>
+                    <form action="{% url 'home' %}" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="username" placeholder="Username" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    </form>
+                </div>
             </div>
-            <div class="mb-3">
-                <!-- <label for="password">Password</label> -->
-                <input type="password" class="form-control" name="password", placeholder="Password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-    </form>
+        </div>
+    </div>
+    {% endif %}
 </div>
-
-{% endif %}
-{% endblock %} 
+{% endblock %}
